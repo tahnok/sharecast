@@ -1,5 +1,4 @@
 require 'rexml/document'
-require 'http'
 require 'faraday_middleware'
 
 module Sharecast
