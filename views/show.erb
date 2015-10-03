@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script id="data" type='text/javascript'>
+      <%= data %>
+    </script>
+    <script type='text/javascript'>
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log("peww");
+        var data = JSON.parse(document.getElementById("data").textContent);
+        data.forEach(function(podcast) {
+          var link = document.createElement("a");
+          link.href = podcast.url;
+
+          var img = document.createElement('img');
+          img.src = podcast.image_url;
+          img.width = 140;
+          img.height = 140;
+
+          link.appendChild(img);
+          link.appendChild(document.createTextNode(podcast.title));
+
+          var entry = document.createElement('li');
+          entry.appendChild(link);
+          document.getElementById("list").appendChild(entry);
+        }
+        );
+      });
+    </script>
+  </head>
+  <body>
+    Wooo
+    <ul id="list">
+    </ul>
+  </body>
+</html>
