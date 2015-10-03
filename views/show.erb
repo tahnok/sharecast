@@ -3,6 +3,7 @@
     <script id="data" type='text/javascript'>
       <%= data %>
     </script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       document.addEventListener('DOMContentLoaded', function () {
         console.log("peww");
@@ -21,6 +22,8 @@
           link.appendChild(document.createTextNode(podcast.title));
 
           var entry = document.createElement('div');
+          entry.style.width = "140px";
+          entry.style.padding = "10px";
           entry.appendChild(link);
           document.getElementById("list").appendChild(entry);
         }
@@ -28,6 +31,9 @@
       });
     </script>
     <style type="text/css">
+      html, body {
+        font-family: 'Open Sans', sans-serif;
+      }
       #list {
         display: flex;
         flex-direction: row;

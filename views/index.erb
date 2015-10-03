@@ -1,8 +1,18 @@
 <html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      html, body {
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
   <body>
-    Upload your OPML file
+    <h1>Sharecast</h1>
+    <p>Upload an OPML file to make a page with all your podcasts to share with your buddies</p>
     <form action="/upload" method="post" enctype='multipart/form-data'>
       <input type="file" name="opml_file">
+      <br/>
+      <br/>
       <button type="submit">Generate share page</button>
     </form>
   </body>
