@@ -1,12 +1,14 @@
 require 'rexml/document'
 require 'http'
+require 'faraday_middleware'
 
 module Sharecast
 
   def self.get_image(url)
-    raw = HTTP.get(url).body.to_s
+    raw = self.get(url)
     doc = REXML::Document.new(raw)
     doc.elements.each("rss/channel/itunes:image") do |item|
+      puts item.attributes
       return item.attributes["href"]
     end
   end
@@ -30,4 +32,15 @@ module Sharecast
 
     return podcasts
   end
+
+  private
+
+  def self.get(url)
+    @adapter ||= Faraday.new { |b|
+      b.use FaradayMiddleware::FollowRedirects
+      b.adapter :net_http
+    }
+    @adapter.get(url).body
+  end
+
 end

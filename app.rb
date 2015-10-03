@@ -13,18 +13,19 @@ post '/upload' do
   file = params["opml_file"][:tempfile].read
   id = Digest::MD5.hexdigest(file)
 
-  redirect to("/#{id}") if redis.get(id)
+	if redis.exists(id)
+		redirect to("/#{id}")
+		return
+	end
 
   podcasts = Sharecast.parse_opml(file).to_json
-  puts id
   redis.set(id , podcasts)
   redirect to("/#{id}")
 end
 
 get '/:id' do |id|
-  puts id
   data = redis.get(id)
-  if data
+  if data && data != []
     erb :show, locals: { data: data }
   else
     erb :not_found, locals: { id: id }
