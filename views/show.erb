@@ -17,19 +17,26 @@
           img.height = 140;
 
           link.appendChild(img);
+          link.appendChild(document.createElement("br"));
           link.appendChild(document.createTextNode(podcast.title));
 
-          var entry = document.createElement('li');
+          var entry = document.createElement('div');
           entry.appendChild(link);
           document.getElementById("list").appendChild(entry);
         }
         );
       });
     </script>
+    <style type="text/css">
+      #list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    </style>
   </head>
   <body>
-    Wooo
-    <ul id="list">
+    <h1>Your Podcasts</h1>
+    <div id="list">
     </ul>
   </body>
 </html>
