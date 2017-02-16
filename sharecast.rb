@@ -10,6 +10,8 @@ module Sharecast
       puts item.attributes
       return item.attributes["href"]
     end
+  rescue REXML::ParseException
+    return nil
   end
 
   def self.parse_opml(raw_string)
